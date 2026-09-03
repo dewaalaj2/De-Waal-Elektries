@@ -265,7 +265,16 @@ img{max-width:100%}
 .bank{margin-top:44px}
 .mods{columns:3;column-gap:16px}
 @media (max-width:1000px){.mods{columns:2}}
-@media (max-width:600px){.mods{columns:1}}
+/* stay two-up on phones: thirteen full-width photographs made the page
+   ~11,700px tall, which is an unreasonable scroll on a handset */
+@media (max-width:600px){
+  .mods{columns:2;column-gap:10px}
+  .mod{margin-bottom:14px}
+  .mod figcaption{padding:8px 0 0}
+  .mod .nm{font-size:11px;letter-spacing:.07em}
+  .mod .ds{font-size:12.5px;line-height:1.45;margin-top:3px}
+}
+@media (max-width:340px){.mods{columns:1}}
 .mod{break-inside:avoid;margin:0 0 22px}
 .mod img{display:block;width:100%;height:auto;background:#222824}
 .mod figcaption{padding:10px 0 0}
@@ -422,9 +431,16 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
   .namebadge h1{font-size:clamp(34px,11vw,54px)}
   .brandplate img{width:176px}
   .acts{display:none}
-  .facts{flex-direction:column}
-  .facts li{border-right:none;border-bottom:1px solid var(--steel-dk);padding:11px 20px}
-  .facts li:last-child{border-bottom:none}
+  /* one compact row, not three stacked: the first screen is only ~690px tall */
+  .facts li{
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    gap:2px;
+    padding:10px 12px;
+  }
+  .facts .n{font-size:19px}
+  .facts .l{font-size:9px;letter-spacing:.1em;line-height:1.35}
   .scrim{background:linear-gradient(180deg,rgba(12,16,12,.30) 0%,rgba(12,16,12,.15) 40%,rgba(12,16,12,.82) 100%)}
 }
 
@@ -508,6 +524,10 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
   <div class="screen">
     <section class="hero" aria-label="De Waal Electrical, Solar and Plumbing">
       <picture>
+        <!-- phones get a portrait crop: the wide desktop frame centres on sky and
+             crops both technicians off the right edge -->
+        <source media="(max-width:860px)" type="image/webp" srcset="img/hero-mobile-480.webp 480w, img/hero-mobile-780.webp 780w" sizes="100vw">
+        <source media="(max-width:860px)" type="image/jpeg" srcset="img/hero-mobile.jpg">
         <source type="image/webp" srcset="img/hero-photo-480.webp 480w, img/hero-photo-800.webp 800w, img/hero-photo-1280.webp 1280w, img/hero-photo-1920.webp 1920w" sizes="100vw">
         <img src="img/hero-photo.jpg" alt="A technician standing on a tiled roof beside a ladder, installing a solar panel array under a clear sky" width="1920" height="896" fetchpriority="high">
       </picture>
@@ -597,7 +617,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/ground-array-480.webp 480w, img/ground-array-800.webp 800w, img/ground-array-1200.webp 960w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/ground-array-480.webp 480w, img/ground-array-800.webp 800w, img/ground-array-1200.webp 960w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/ground-array.jpg" alt="A ground-mounted solar array on a farm under a clouded sky" width="960" height="1280" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Ground-mounted arrays</div><div class="ds">Where the roof will not take it, the array goes on frames in the yard, angled for the Free State sun.</div></figcaption>
@@ -605,7 +625,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/inverter-clean-480.webp 480w, img/inverter-clean-800.webp 800w, img/inverter-clean-1200.webp 1092w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/inverter-clean-480.webp 480w, img/inverter-clean-800.webp 800w, img/inverter-clean-1200.webp 1092w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/inverter-clean.jpg" alt="Wall-mounted solar inverter with distribution boards either side and neatly routed conduit" width="1092" height="1456" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Solar inverter installation</div><div class="ds">Inverter, distribution boards and battery — conduit run neatly and properly labelled.</div></figcaption>
@@ -613,7 +633,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/array-wide-480.webp 480w, img/array-wide-800.webp 800w, img/array-wide-1200.webp 1200w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/array-wide-480.webp 480w, img/array-wide-800.webp 800w, img/array-wide-1200.webp 1200w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/array-wide.jpg" alt="A large solar panel array mounted over a carport structure" width="1280" height="960" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Large installations</div><div class="ds">Bigger sites get more panels and more inverter, sized to what the property actually draws.</div></figcaption>
@@ -621,7 +641,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/inverter-twin-battery-480.webp 480w, img/inverter-twin-battery-800.webp 800w, img/inverter-twin-battery-1200.webp 1092w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/inverter-twin-battery-480.webp 480w, img/inverter-twin-battery-800.webp 800w, img/inverter-twin-battery-1200.webp 1092w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/inverter-twin-battery.jpg" alt="Solar inverter installed above two battery units mounted against a wall" width="1092" height="1456" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Dual battery backup</div><div class="ds">Bigger household, bigger buffer — two battery units for a longer run through an outage.</div></figcaption>
@@ -629,7 +649,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/roof-install-480.webp 480w, img/roof-install-800.webp 800w, img/roof-install-1200.webp 1200w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/roof-install-480.webp 480w, img/roof-install-800.webp 800w, img/roof-install-1200.webp 1200w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/roof-install.jpg" alt="Solar panels being installed on a tiled roof with a ladder against the wall" width="1280" height="720" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Roof installations</div><div class="ds">Panels mounted, sealed and routed back to the board without leaving a leak behind.</div></figcaption>
@@ -637,7 +657,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/photo-10-480.webp 480w, img/photo-10-800.webp 800w, img/photo-10-1200.webp 950w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/photo-10-480.webp 480w, img/photo-10-800.webp 800w, img/photo-10-1200.webp 950w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/photo-10.jpg" alt="Electrical conduit and flush-mount boxes chased into a plastered wall before finishing" width="950" height="1267" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Conduit roughing-in</div><div class="ds">Chased in straight and boxed before the plaster goes back on. The part nobody sees again.</div></figcaption>
@@ -645,7 +665,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/inverter-battery-brick-480.webp 480w, img/inverter-battery-brick-800.webp 800w, img/inverter-battery-brick-1200.webp 958w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/inverter-battery-brick-480.webp 480w, img/inverter-battery-brick-800.webp 800w, img/inverter-battery-brick-1200.webp 958w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/inverter-battery-brick.jpg" alt="Solar inverter and battery mounted on a face-brick wall" width="958" height="1280" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Inverter &amp; battery</div><div class="ds">Battery paired to the main board so the essential circuits stay live.</div></figcaption>
@@ -653,7 +673,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/photo-07-480.webp 480w, img/photo-07-800.webp 800w, img/photo-07-1200.webp 950w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/photo-07-480.webp 480w, img/photo-07-800.webp 800w, img/photo-07-1200.webp 950w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/photo-07.jpg" alt="Water storage tank installed outside a house with pump and plumbing connections" width="950" height="713" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Water storage</div><div class="ds">Tank plumbed in with a pressure pump so the taps still work when the mains do not.</div></figcaption>
@@ -661,7 +681,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/roof-palms-480.webp 480w, img/roof-palms-800.webp 800w, img/roof-palms-1200.webp 1200w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/roof-palms-480.webp 480w, img/roof-palms-800.webp 800w, img/roof-palms-1200.webp 1200w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/roof-palms.jpg" alt="Solar panels on a house roof seen past palm trees under a cloudy sky" width="1280" height="960" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Residential solar</div><div class="ds">Sized for the household, angled for the sun it will actually get.</div></figcaption>
@@ -669,7 +689,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/photo-08-480.webp 480w, img/photo-08-800.webp 800w, img/photo-08-1200.webp 950w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/photo-08-480.webp 480w, img/photo-08-800.webp 800w, img/photo-08-1200.webp 950w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/photo-08.jpg" alt="Pressure pump connected to plumbing with a weatherproof electrical connection box" width="950" height="1267" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Pressure pump</div><div class="ds">Pump wired with a weatherproof connection, because it lives outside in the weather.</div></figcaption>
@@ -677,7 +697,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/inverter-yellow-480.webp 480w, img/inverter-yellow-800.webp 800w, img/inverter-yellow-1200.webp 720w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/inverter-yellow-480.webp 480w, img/inverter-yellow-800.webp 800w, img/inverter-yellow-1200.webp 720w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/inverter-yellow.jpg" alt="Solar inverter and battery installed on a wall beside a distribution board" width="720" height="1280" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Inverter &amp; changeover</div><div class="ds">Changeover and surge protection, wired to take the hit when the power returns.</div></figcaption>
@@ -685,7 +705,7 @@ footer a{color:#c8d0c6;display:inline-block;padding:4px 0}
 
           <figure class="mod">
             <picture>
-              <source type="image/webp" srcset="img/photo-09-480.webp 480w, img/photo-09-800.webp 800w, img/photo-09-1200.webp 950w" sizes="(max-width:600px) 100vw, (max-width:1000px) 46vw, 30vw">
+              <source type="image/webp" srcset="img/photo-09-480.webp 480w, img/photo-09-800.webp 800w, img/photo-09-1200.webp 950w" sizes="(max-width:340px) 100vw, (max-width:1000px) 46vw, 30vw">
               <img src="img/photo-09.jpg" alt="Pipe manifold with multiple valves connected to a pump, laid out on grass on site" width="950" height="713" loading="lazy" decoding="async">
             </picture>
             <figcaption><div class="nm">Pipework &amp; valves</div><div class="ds">Multi-valve manifold for irrigation and water systems, laid out so one tap controls one line.</div></figcaption>
